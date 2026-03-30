@@ -2,10 +2,18 @@ spring:
   application:
     name: api-gateway
 
-  config:
-#    fail-fast
-    import: "configserver:http://localhost:9000"
-
   cloud:
     config:
-      uri: http://config.platform:9000
+      uri: http://localhost:9000  # Config Server URL
+
+server:
+  port: 8080  # Gateway port (change if needed)
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9001/eureka/
+    registerWithEureka: true
+    fetchRegistry: true
+  instance:
+    preferIpAddress: true
